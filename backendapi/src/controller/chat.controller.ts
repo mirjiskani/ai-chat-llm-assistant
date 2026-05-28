@@ -19,10 +19,6 @@ export const chatWithOpenAI = async (req: Request, res: Response) => {
             // messages,
             messages: [
                 {
-                    role: "system",
-                    content: "You are a helpful AI assistant.",
-                },
-                {
                     role: "user",
                     content: message,
                 },
