@@ -49,3 +49,11 @@ backendapi/
 ├── package.json
 └── README.md
 ```
+
+
+
+## Author
+
+Mir Khan
+
+Full Stack Developer | Software Engineer | React | Angular | Node.js | AI Integrations

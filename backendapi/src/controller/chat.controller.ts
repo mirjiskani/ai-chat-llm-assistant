@@ -6,7 +6,7 @@ export const chatWithOpenAI = async (req: Request, res: Response) => {
       //  res.json({ success: true, message: "Chat endpoint is working!" });
       const { message } = req.body;
         // Basic validation If messages is not provided, return a 400 error
-        if (!message) {
+        if (!message?.content) {
             return res.status(400).json({
                 success: false,
                 message: "Message is required",
@@ -23,15 +23,16 @@ export const chatWithOpenAI = async (req: Request, res: Response) => {
                     content: "You are a helpful AI assistant.",
                 },
                 {
-                    role: "user",
-                    content: message,
+                    role: message,
+                    content: message.content,
                 },
             ],
         });
         res.json(response);
     }
-    catch (error) {
-        console.error("Error in chatController:", error);
-        res.status(500).json({ error: "An error occurred while processing the chat request." });
+    catch (error: any) {
+        console.error("Error in chatController:", error?.error);
+        res.json({ error: error?.error || error?.message || "Internal server error" });
+        // res.json({ error: error?.error || error?.message || "Internal server error" });
     }
 };
